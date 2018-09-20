@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>小球的移动</title>
+		<style>
+			.outBox{
+				width: 400px;
+				height: 400px;
+				background:darkgrey;
+				margin: 0 auto;
+				position: relative;
+			}
+			.outBox div{
+				position: absolute;
+				border-radius: 50%;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="outBox">
+		</div>
+		<script>
+			//构造函数
+			var balls = function(w,h,background,x,y,dir,speed){
+				this.width = w ;
+				this.height = h ;
+				this.backgroundColor = background;
+				this.left = x;
+				this.top = y;
+				this.direction = dir;
+				this.speed = speed;
+				this.create = function(){
+					this.ball = document.createElement('div');
+					this.ball.style.width =  this.width + 'px';
+					this.ball.style.height =  this.height + 'px';
+					this.ball.style.backgroundColor =  this.backgroundColor;
+					this.ball.style.left =  this.left + 'px';
+					this.ball.style.top =  this.top + 'px';
+					document.getElementsByClassName('outBox')[0].appendChild(this.ball);
+				};
+				this.ballStyle = function(){
+//					currentStyle IE、Opera支持写法; window.getComputedStyle  其他浏览器支持;
+					this.curStyle = this.ball.currentStyle ? this.ball.currentStyle : window.getComputedStyle(this.ball, null);
+					this.positionX = parseInt(this.curStyle.left);
+					this.positionY = parseInt(this.curStyle.top);	
+				};
+				this.checkCollision = function () {
+			        if (this.positionX <= 0) {
+			            this.direction = 'right';
+			        } else if (this.positionX >= 400-20) {
+			            this.direction = 'left';
+			        } else if (this.positionY <= 0) {
+			            this.direction = 'down';
+			        } else if (this.positionY >= 400-20) {
+			            this.direction = 'up';
+			        }
+			    };
+			    this.movePosition = function(){
+			    	if(this.direction === 'right'){
+			    		this.positionX += this.speed;
+        				this.ball.style.left = parseInt(this.positionX) + 'px';
+			    	}else if(this.direction === 'left'){
+			    		this.positionX -= this.speed;
+			        	this.ball.style.left = this.positionX + 'px';
+			    	}else if(this.direction === 'down'){
+			    		this.positionY += this.speed;
+			        	this.ball.style.top = this.positionY + 'px';
+			    	}else if(this.direction === 'up'){
+			    		this.positionY -= this.speed;
+			        	this.ball.style.top = this.positionY + 'px';
+			    	}
+			    };
+			}/* end 构造函数*/
+			
+			var ballsRed = new balls(15,15,'red',100,100,'right',10);
+			ballsRed.create();
+			var ballsBlue = new balls(15,15,'blue',200,200,'left',5);
+			ballsBlue.create();
+
+			setInterval(function(){
+				ballsRed.ballStyle();
+				ballsBlue.ballStyle();
+				document.body.onkeydown = function(event){ 		
+			        switch (event.keyCode) {
+			            case 37:
+			                ballsRed.direction = 'left';
+			                break;
+			            case 38:
+			                ballsRed.direction = 'up';
+			                break;
+			            case 39:
+			                ballsRed.direction = 'right';
+			                break;
+			            case 40:
+			                ballsRed.direction = 'down';
+			                break;
+			            case 65:
+			            	ballsBlue.direction = 'left';
+			            	break;
+			            case 87:
+			            	ballsBlue.direction = 'up';
+			            	break;
+			            case 83:
+			            	ballsBlue.direction = 'down';
+			            	break;
+			            case 68:
+			            	ballsBlue.direction = 'right';
+			            	break;
+			            default:
+			                return;
+			        } 
+			   };
+				ballsRed.checkCollision();
+				ballsBlue.checkCollision();	
+				ballsRed.movePosition();
+				ballsBlue.movePosition();
+			},50)
+		</script>
+	</body>
+</html>

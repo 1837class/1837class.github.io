@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>font-face作业</title>
+	<style>
+		@font-face{
+			src:url('asset/fonts/lxls.ttf');
+			font-family: 'lxls';
+		}
+		@font-face{
+			src: url('asset/fonts/bdfont.ttf');
+			font-family: 'bd';
+		}
+		.box{
+			border-bottom: 1px dashed black;
+		}
+		.box p{
+			font-family: 'lxls';
+			font-size : 25px;
+		}
+		.box img{
+			width: 55px;
+			height: 55px;
+		}
+		.box svg{
+			color: pink;
+		}
+
+		.font-1::before{
+			font-family: 'bd';
+			content: '\e001\e002\e003\e004\e006';
+			color: lightblue;
+            font-size: 60px;
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<p>font-face</p>
+		<span class="font-1"></span>
+	</div>
+	<br/>
+	<div class="box">
+		<p>Svg font-face</p>
+		<svg id="airplanemode%20%E6%B4%BB%E8%B7%83" width="256" height="256" style="width:55px;height:55px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve"><path fill="#666" d="M972.8 715.66 l0 -100.12 l-410.74 -257.14 l0 -282.17 q-1.14 -32.99 -22.18 -54.04 q-21.05 -21.05 -54.05 -22.19 q-34.13 1.14 -55.18 22.19 q-21.05 21.05 -22.19 54.04 l0 282.17 l-408.46 257.14 l0 100.12 l408.46 -127.43 l0 282.17 l-101.26 76.23 l0 77.37 l178.63 -51.2 l179.77 51.2 l0 -77.37 l-103.54 -76.23 l0 -282.17 l410.74 127.43 l0 0 Z"/>
+		</svg>
+		<svg id="%E6%B7%BB%E5%8A%A0%20%E4%BD%8D%E7%BD%AE" width="256" height="256" style="width:55px;height:55px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve"><path fill="#666" d="M562.06 408.46 l-153.6 0 l0 153.6 l-101.26 0 l0 -153.6 l-153.6 0 l0 -101.26 l153.6 0 l0 -153.6 l101.26 0 l0 153.6 l153.6 0 l0 101.26 l0 0 ZM358.4 0 q-151.32 3.41 -252.59 104.68 q-101.26 101.26 -105.81 253.72 q22.76 217.32 179.2 433.49 q156.44 216.18 179.2 232.11 q21.62 -15.93 178.63 -232.11 q157.01 -216.17 179.77 -433.49 q-4.55 -152.46 -105.81 -253.72 q-101.27 -101.27 -252.59 -104.68 l0 0 Z"/>
+		</svg>
+		<svg id="airplay" width="256" height="256" style="width:55px;height:55px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve"><path fill="#666" d="M930.82 0 l-837.64 0 q-39.23 0.98 -65.72 27.46 q-26.48 26.49 -27.46 65.72 l0 558.1 q0.98 38.25 27.46 64.24 q26.49 26 65.72 26.98 l185.38 0 l0 -91.22 l-185.38 0 l0 -558.1 l837.64 0 l0 558.1 l-185.38 0 l0 91.22 l185.38 0 q39.23 -0.98 65.72 -26.98 q26.48 -25.99 27.46 -64.24 l0 -558.1 q-0.98 -39.23 -27.46 -65.72 q-26.49 -26.48 -65.72 -27.46 l0 0 ZM232.46 882.76 l558.1 0 l-278.56 -279.54 l-279.54 279.54 l0 0 Z"/></svg>
+		<svg id="%E5%90%91%E4%B8%8B%E7%AE%AD%E5%A4%B4" width="256" height="256" style="width:55px;height:55px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve"><path fill="#666" d="M934.12 422.12 l-359.54 356.12 l0 -778.24 l-126.3 0 l0 778.24 l-356.12 -356.12 l-92.16 89.88 l512 512 l512 -512 l-89.88 -89.88 l0 0 Z"/></svg>
+		<svg id="%E8%B4%A6%E6%88%B7%20%E5%9C%86" width="256" height="256" style="width:55px;height:55px;" version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" enable-background="new 0 0 1024 1024" xml:space="preserve"><path fill="#666" d="M512 881.78 q-96.71 -1.14 -176.36 -46.08 q-79.64 -44.94 -131.98 -120.04 q11.38 -75.09 116.62 -116.62 q105.25 -41.53 191.72 -41.53 q85.33 0 191.15 41.53 q105.81 41.53 116.05 116.62 q-51.2 75.1 -131.41 120.04 q-80.22 44.94 -175.79 46.08 l0 0 ZM512 153.6 q64.85 1.14 108.66 44.94 q43.8 43.81 44.94 108.66 q-1.14 64.85 -44.94 108.66 q-43.81 43.8 -108.66 44.94 q-64.85 -1.14 -108.66 -44.94 q-43.8 -43.81 -44.94 -108.66 q1.14 -64.85 44.94 -108.66 q43.81 -43.8 108.66 -44.94 l0 0 ZM512 0 q-217.32 4.55 -361.81 149.05 q-144.5 144.5 -150.19 362.95 q5.69 217.32 150.19 361.81 q144.49 144.5 361.81 150.19 q218.45 -5.69 362.95 -150.19 q144.5 -144.49 149.05 -361.81 q-4.55 -218.45 -149.05 -362.95 q-144.5 -144.5 -362.95 -149.05 l0 0 Z"/></svg>
+	</div>
+	<br/>
+	<div class="box">
+		<p>img-font</p>
+		<img src="img-font/airplanemode.png" >
+		<img src="img-font/location.png">
+		<img src="img-font/airplay.png" >
+		<img src="img-font/down.png" >
+		<img src="img-font/user.png" >
+	</div>
+	
+</body>
+</html>

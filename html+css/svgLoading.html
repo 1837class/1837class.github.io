@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		.svgBox{
+			overflow : hidden; 
+		}
+		.box{
+			margin: 20px;
+			float: left;
+		}
+		.divSvg{
+			position: relative;
+			width: 200px;
+			height: 200px;
+			background: gray;
+			border : 1px solid red;
+		}
+		.divSvg div{
+			position: absolute;
+			width: 5px;
+			height: 10px;
+			background: orange;
+			margin: 20px;
+
+		}
+		.divSvg-1{
+			left: 10px;
+			animation: divSvg-first 0.5s ease-in-out 0s infinite;
+		}
+		.divSvg-2{
+			left: 20px;
+			animation: divSvg-second 0.5s ease-in-out 0.2s infinite;
+		}
+		.divSvg-3{
+			left: 30px;
+			animation: divSvg-third 0.5s ease-in-out 0.4s infinite;
+		}
+
+		.divSvg-4{
+			opacity: 0.2;
+			left: 10px;
+			top: 80px;
+			animation: divSvg-fourth 0.5s ease-in-out 0s infinite;
+		}
+		.divSvg-5{
+			opacity: 0.2;
+			left: 20px;
+			top: 80px;
+			animation: divSvg-fiveth 0.5s ease-in-out 0.2s infinite;
+		}
+		.divSvg-6{
+			opacity: 0.2;
+			left: 30px;
+			top: 80px;
+			animation: divSvg-sixth 0.5s ease-in-out 0.4s infinite;
+		}
+		@keyframes divSvg-first{
+			50%{transform : translateY(-10px)}
+			100%{transform : translateY(0px)}
+		}
+		@keyframes divSvg-second{
+			50%{transform : translateY(-10px)}
+			100%{transform : translateY(0px)}
+		}
+		@keyframes divSvg-third{
+			50%{transform : translateY(-10px)}
+			100%{transform : translateY(0px)}
+		}
+		@keyframes divSvg-fourth{
+			50%{transform : scaleY(1.8);opacity: 1}
+			100%{transform : scaleY(1);opacity: 0.2}
+		}
+		@keyframes divSvg-fiveth{
+			50%{transform : scaleY(1.8);opacity: 1}
+			100%{transform : scaleY(1);opacity: 0.2}
+		}
+		@keyframes divSvg-sixth{
+			50%{transform : scaleY(1.8);opacity: 1}
+			100%{transform : scaleY(1);opacity: 0.2}
+		}
+	</style>
+</head>
+<body>
+	<div class="svgBox">
+		<svg viewBox="0 0 200 200" width="200" height="200" class="box">
+			<rect x="0" y="0" width="200" height="200" stroke="red" fill="gray"></rect>		
+			<rect x="85" y="10" width="5" height="10" fill="orange">
+				<animateTransform attributeName="transform" attributeType="XML" type="translate" 
+				values="0 0; 0 15; 0 0" dur="0.6s" repeatCount="indefinite"></animateTransform>
+			</rect>
+			<rect x="95" y="10" width="5" height="10" fill="orange">
+				<animateTransform attributeName="transform" attributeType="XML" type="translate" 
+				values="0 0; 0 15; 0 0" begin="0.2s" dur="0.6s" repeatCount="indefinite"></animateTransform>
+			</rect>
+			<rect x="105" y="10" width="5" height="10" fill="orange" >
+				<animateTransform attributeName="transform" attributeType="XML" type="translate" 
+				values="0 0; 0 15; 0 0" begin="0.4s" dur="0.6s" repeatCount="indefinite"></animateTransform>
+			</rect>
+
+
+			<rect x="85" y="70" width="5" height="10" fill="orange" opacity="0.2" >
+				<animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" 
+				begin="0s" dur="0.6s" repeatCount="indefinite" />
+				<!-- <animateTransform attributeName="transform" attributeType="XML" type="scale" 
+				from="1" to="2" begin="0s" dur="0.6s" repeatCount="indefinite"></animateTransform> -->
+				<animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0s" dur="0.6s" repeatCount="indefinite" />
+				<animate attributeName="y" attributeType="XML" values="70; 65; 70" begin="0s" dur="0.6s" repeatCount="indefinite" />
+			</rect>
+			<rect x="95" y="70" width="5" height="10" fill="orange" opacity="0.2">
+				<animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" 
+				begin="0.2s" dur="0.6s" repeatCount="indefinite"/>
+				<animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.2s" dur="0.6s" repeatCount="indefinite"/>
+				<animate attributeName="y" attributeType="XML" values="70; 65; 70" begin="0.2s" dur="0.6s" repeatCount="indefinite"/>
+			</rect>
+			<rect x="105" y="70" width="5" height="10" fill="orange" opacity="0.2">
+				<animate attributeName="opacity" attributeType="XML" values="0.2; 1; .2" 
+				begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+				<animate attributeName="height" attributeType="XML" values="10; 20; 10" begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+				<animate attributeName="y" attributeType="XML" values="70; 65; 70" begin="0.4s" dur="0.6s" repeatCount="indefinite" />
+			</rect>
+		</svg>
+		
+
+		<div class="box divSvg">
+			css写法实现
+			<div class="divSvg-1"></div>
+			<div class="divSvg-2"></div>
+			<div class="divSvg-3"></div>
+
+			<div class="divSvg-4"></div>
+			<div class="divSvg-5"></div>
+			<div class="divSvg-6"></div>
+		</div>
+	</div>
+</body>
+</html>

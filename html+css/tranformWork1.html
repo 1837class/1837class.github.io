@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+    .Box {
+        width: 500px;
+        margin: 30px auto;
+        overflow: hidden;
+    }
+
+    .Box div {
+        width: 100px;
+        height: 100px;
+        background: lightblue;
+        margin: 10px;
+    }
+
+    .backBox {
+        width: 500px;
+        margin: 20px auto;
+        overflow: hidden;
+    }
+
+    .backBox div {
+    	float: left;
+        z-index: 2;
+        width: 120px;
+        height: 40px;
+        background: #e1e1e1;
+        color: rgba(0, 0, 0, 0.6);
+        margin: 10px;
+        text-align: center;
+        line-height: 40px;
+        position: relative;
+    }
+
+    .backBox div .hideBox {
+        z-index: -1;
+        transition: all 0.5s;
+        width: 120px;
+        height: 40px;
+        position: absolute;
+        background: #2098d1;
+        margin: 0;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+
+    .box5:hover {
+        animation: lr-shake 1s ease;
+    }
+
+    @keyframes lr-shake {
+        20% {
+            transform: translateX(8px);
+        }
+        30% {
+            transform: translateX(-8px);
+        }
+        40% {
+            transform: translateX(5px);
+        }
+        50% {
+            transform: translateX(-5px);
+        }
+        60% {
+            transform: translateX(2px);
+        }
+        70% {
+            transform: translateX(-2px);
+        }
+        80% {
+            transform: translateX(1px);
+        }
+        90% {
+            transform: translateX(-1px);
+        }
+        100% {
+            transform: translateX(0px);
+        }
+    }
+
+    .box6 {
+        transform-origin: 50% 0 0;
+    }
+
+    .box6:hover {
+        animation: down-shake 0.7s ease 1;
+    }
+
+    @keyframes down-shake {
+        20% {
+            transform: skewX(-8deg);
+        }
+        40% {
+            transform: skewX(7deg);
+        }
+        60% {
+            transform: skewX(-5deg);
+        }
+        80% {
+            transform: skewX(2deg);
+        }
+        90% {
+            transform: skewX(-1deg);
+        }
+        100% {
+            transform: skewX(0deg);
+        }
+    }
+
+    .box7:hover {
+        animation: size-shake 1s ease infinite;
+    }
+    @keyframes size-shake {
+        0% {
+            transform: scale(1.2);
+        }
+        50% {
+            transform: scale(0.8);
+        }
+        100% {
+            transform: scale(1.2);
+        }
+    }
+    .box8:hover{
+		animation: sink 2s infinite;
+	}
+	@keyframes sink{
+		0%{transform:translateY(5px);}
+		30%{transform:translateY(7px);}
+		60%{transform:translateY(5px);}
+		90%{transform:translateY(7px);}
+		100%{transform:translateY(5px);}
+	}
+    </style>
+</head>
+
+<body>
+    <div class="Box">
+        <!-- 前4项用jq做的 -->
+        <div class="box1">放大</div>
+        <div class="box2">缩小</div>
+        <div class="box3">先大后小</div>
+        <div class="box4">两次放大</div>
+        <br/>
+        <div class="box5">左右抖动</div>
+        <div class="box6">下摆飘逸</div>
+        <div class="box7">动态大小</div>
+        <div class="box8">沉浮</div>
+    </div>
+    <div class="backBox">
+        <div class="back1">
+            <div class="hideBox"></div>
+            <!-- 这里利用了div作为遮罩层，实际上用::before更好 -->
+            Fade
+        </div>
+    </div>
+
+    <!-- 
+    网址推荐：（作业）
+    https://c.runoob.com/codedemo/3391
+    https://ianlunn.github.io/Hover/
+    https://gudh.github.io/ihover/dist/index.html
+    单选复选美化
+    开关切换 
+    -->
+
+    <script type="text/javascript">
+    $('.Box div').css({
+        transition: 'all 0.5s',
+        textAlign: 'center',
+        lineHeight: '100px',
+        float: 'left'
+    }).eq(0).hover(function() {
+        $(this).css('transform', 'scale(1.1)')
+    }, function() {
+        $(this).css('transform', '')
+    });
+
+    $('.Box div').eq(1).hover(function() {
+        $(this).css('transform', 'scale(0.9)')
+    }, function() {
+        $(this).css('transform', '')
+    });
+
+    var div3 = $('.Box div').eq(2);
+    div3.hover(function() {
+        div3.css('transform', 'scale(1.1)');
+        setTimeout(function() {
+            if (div3.css("transform") == 'scale(0.9)') {
+                div3.css('transform', 'scale(1.1)')
+            } else {
+                div3.css('transform', 'scale(0.9)')
+            }
+        }, 300)
+    }, function() {
+        $(this).css('transform', '');
+    })
+
+    var div4 = $('.Box div:nth-of-type(4)');
+    div4.hover(function() {
+        div4.css('transform', 'scale(1.1)')
+        setTimeout(function() {
+            div4.css('transform', 'scale(1.15)')
+        }, 300)
+    }, function() {
+        $(this).css('transform', '');
+    })
+
+    var back1 = $('.backBox div').eq(0);
+    back1.hover(function() {
+        $(this).css('color', 'white').children('.hideBox').css('opacity', '1')
+    }, function() {
+        $(this).css('color', 'rgba(0,0,0,0.6)').children('.hideBox').css('opacity', '0')
+    })
+
+    // var back2 = $('.backBox div').eq(1);
+    // back2.hover(function() {
+    //     $(this).children('.hideBox').css('')
+    // })
+    </script>
+	<!-- end 第一阶段 -->
+
+
+    <!--go 第二阶段 -->
+   
+	<div class="backBox">
+		 <div class="turn-right">
+		 	Bounce Right
+		 </div>
+		 <div class="shutter-out">
+		 	Shutter Out
+		 </div>
+	</div>
+
+    <!-- In 和 Out 最大的区别就是，要把背景色和转换色调换过来，逆向思维transform -->
+    <div class="fadeIn">
+        <div class="shutter-in">
+            Shutter In
+        </div>
+    </div>
+	
+	<style>
+		.turn-right,.shutter-out{
+			z-index: 2;
+			position: relative;
+			overflow: hidden;
+		}
+		.turn-right:hover,.shutter-out:hover{
+			color: white;
+		}
+		.turn-right::before{
+			z-index: -1;
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 100%;
+			margin-left: -18px;
+			background: #2098d1;
+			transition: all 0.5s;
+			transform:translate(-120px);	
+		}
+		.turn-right:hover::before{
+			animation: Bounce-Right 0.5s ease;
+			animation-fill-mode : forwards; 
+			/*当动画完成后，保持最后一个属性值（在最后一个关键帧中定义）*/
+			
+		}
+		.shutter-out::before{
+			z-index: -1;
+			position: absolute;
+			content: '';
+			width: 100%;
+			height: 100%;
+			margin-left: -16px;
+			background: #2098d1;
+			transition: all 0.5s;
+			transform: rotateY(90deg);
+		}
+		.shutter-out:hover::before{
+			transform: rotateY(0deg);
+		}
+		
+		@keyframes Bounce-Right{  /*用动画，回退的时候则没有效果*/
+			50%{transform:translate(0px);}
+			70%{transform:translate(-10px);}
+			80%{transform:translate(5px);}
+			100%{transform:translate(10px);}
+		}
+		/*以上css代码是标准的添加hover遮罩层的答案*/
+        
+
+        .fadeIn {
+            width: 500px;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        .fadeIn div{
+            float: left;
+            z-index: 2;
+            width: 120px;
+            height: 40px;
+            /* 原out的背景色： #e1e1e1*/
+            background: #2098d1;  /*现in的背景色：蓝色*/
+            color: rgba(0, 0, 0, 0.6);
+            margin: 10px;
+            text-align: center;
+            line-height: 40px;
+            position: relative;
+        }
+
+        .shutter-in::before{
+            z-index: -1;
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            margin-left: -22px;
+            background: #e1e1e1;
+            transition: all 0.5s;
+            transform: rotateY(0deg);
+        }
+
+        .shutter-in:hover::before{
+            transform: rotateY(90deg);
+        }
+	</style>
+
+</body>
+
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		.Curls{
+			width: 500px;
+			overflow: hidden;
+			margin: 20px auto;
+		}
+		.Curls div{
+			width: 120px;
+			height: 40px;
+			float: left;
+        	background: #e1e1e1;
+	        color: rgba(0, 0, 0, 0.6);
+	        margin: 10px;
+	        text-align: center;
+	        line-height: 40px;
+	        position: relative;
+		}
+		.curls-TL::before{  /*左上角翻页*/
+			content: '';
+			width: 20px;
+			height: 20px;
+			background: white;
+			background: linear-gradient(135deg, white 45%, #aaa 50%, #ccc 56%, white 80%);;
+			position: absolute;
+			top: 0;
+			left:0;
+			transition: all 0.5s;
+			transform-origin: 0 0 0;
+			transform: scale(0);
+		}
+		.curls-TL:hover::before{
+			transform: scale(1);
+		}
+		.curls-RB::before{  /*右下角翻页*/
+			content: '';
+			width: 20px;
+			height: 20px;
+			background: white;
+			background: linear-gradient(315deg, white 45%, #aaa 50%, #ccc 56%, white 80%);;
+			position: absolute;
+			right: 0;
+			bottom:0;
+			transition: all 0.5s;
+			transform-origin: 100% 100% 0;
+			transform: scale(0);
+		}
+		.curls-RB:hover::before{
+			transform: scale(1);
+		}
+		.triangle {  /*三角形制作原理*/
+			 height:0px; 
+			 width:0px; 
+			 border-top:50px solid transparent;
+			 border-bottom:50px solid transparent;
+			 border-right:50px solid transparent;
+			 border-left:50px solid #e1e1e1;/*#e1e1e1*/
+		}
+		
+		.bubble-right::before{
+			position: absolute;
+			right: 0;
+			top:28%;
+			margin-right: -10px;
+			content: '';
+			height:0px; 
+			width:0px;
+			border-top:10px solid transparent;
+			border-bottom:10px solid transparent;
+			border-right:10px solid transparent;
+			border-left:10px solid #e1e1e1; 
+			transition: all 0.5s;
+		}
+		.bubble-right:hover::before{
+			transform : translate(10px);
+		}
+		.shadow::before{
+			content: '';
+			position: absolute;
+			bottom: 0px;
+			z-index: -1;
+			left: 10px;
+			margin-right: -10px;
+			height:5px; 
+			width:100px;
+			transition: all 0.5s;
+			background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 80%);
+		}
+		.shadow:hover::before{
+			transform : translateY(4px);
+		}
+		
+		.float-shadow::before{
+			position: absolute;
+			/*z-index: -1;*/
+			bottom:-15px;
+			left: 10px;
+			content: '';
+			width: 100px;
+			height: 10px;
+			background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.35) 10%, rgba(0, 0, 0, 0) 90%);
+			transition: all 0.5s;
+			transform : scale(0);
+		}
+		.float-shadow:hover::before{
+			transform: scale(1);
+		}
+		.float-shadow{
+			transition: all 0.5s;
+		}
+		.float-shadow:hover{
+			transform: translateY(-10px);
+		}
+	</style>
+</head>
+<body>
+	<div class="Curls">
+		<!-- 翻页 那个角标 其实就是利用了渐变的不同角度 -->
+		<div class="curls-TL">
+			左上角翻页
+		</div>
+		<div class="curls-RB">
+			右下角翻页
+		</div>
+		<div class="bubble-right">
+			Bubble Right
+		</div>
+		<br />
+		<div class="shadow">
+			Shadow
+		</div>
+		<div class="float-shadow">
+			Float Shadow
+		</div>
+	</div>
+
+	<!-- 以下是三角形 -->
+	<div class="triangle">
+	</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>图片切换</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<style>
+		div{
+			width:200px;
+			height:210px;
+			background:#ccc;
+			float:left;
+			overflow: hidden;
+			background: url(img/1.png) center top;
+			background-size: cover;
+		}
+		ul{
+			list-style: none;
+			float:left;
+			width:20px;
+			padding-left:10px;
+			cursor: pointer;
+		}
+		ul li{
+			width:60px;
+			height:60px;
+			margin-top:5px;
+			background-color: #ddd;
+		}
+	</style>
+</head>
+<body>
+	<div></div>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+</body>
+<script type="text/javascript">
+	var imgArr = ['1.png','2.png','3.png']
+	$('ul li').each(function(i,e){
+		$(e).css({
+			backgroundImage : 'url(img/' + imgArr[i]+')',
+			backgroundSize : 110,
+			backgroundPosition : 'center top'
+		}).click(function(){
+			$('div').stop().fadeOut(0).fadeIn('slow').css({
+				backgroundImage: 'url(img/' + imgArr[i]+')',
+				backgroundSize : 'cover'
+			})
+			$('ul li').eq(i).css({
+				border:'1px solid green'
+			}).siblings().css({
+				border:'0px'
+			})
+
+	})
+})
+
+</script>
+</html>

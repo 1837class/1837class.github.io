@@ -1,0 +1,118 @@
+*{
+	margin:0;
+	padding: 0 ;
+}
+html,body{
+	height: 100%;
+}
+.containerBox,.row,.leftbox{
+	height: 100%; /* 前提是body设置为100% */
+	overflow:hidden;
+}
+.jumbotron,.tab-content,.container-fluid{
+	height: 100%;
+	position: relative;
+}
+.progress{
+	position: absolute;
+	bottom:10%;
+	left:17px; 
+	width: 80%;
+}
+.leftbox{
+	background-color: #363D4D;
+}
+.list-group{
+	margin-bottom: 0px;
+}
+.small:before{
+	content:  "\2014 \00A0";
+}
+.containerBox .navbar{
+	margin-right:  -15px;
+	margin-left: -15px;
+	border-right:0px;
+	margin-top: 51px;
+}
+.navbar a{
+	position: relative;
+	color: #FFF;
+}
+#topMenu ul:first-child li a:focus{
+	background-color: #505050;
+}
+.nav > li > a:hover,.nav > li > a:focus{
+	background-color: gray;
+}
+.nav > li > a > span{
+	margin-right: 10px;
+}
+.list-group a,.list-group a:hover{
+	background-color: #363D4D;
+	color:#FFF;
+}
+.list-group a:focus{
+	background-color: #2E6EA6;
+	color:#FFF;
+}
+.list-group-item{
+	border: 0px;
+}
+.glyphicon-unchecked{
+	font-size: 8px;
+	margin-right: 5px;
+	margin-left: 25px;
+}
+.iconSpread,.iconSpreadTop{   
+	position: absolute;
+	color: white;
+	top:14px;
+	right:-2px;
+}
+.iconSpread{
+	display: none;
+}
+.breadcrumb>li+li:before {
+	content:'>';
+}
+#userlist form{
+	margin: 20px auto;
+}
+#userlist .panel{
+	margin-top: -30px;
+}
+.tab-content{
+	margin-top:51px; 
+}
+#adduser .form-horizontal label:before{
+	content: '*';
+	color: red;
+	font-size: 16px;
+}
+
+/*修改滚动条的样式*/
+	::-webkit-scrollbar{
+		width:16px;
+		height:1px;
+	}
+	/* 设置滚动条条的样式*/
+	::-webkit-scrollbar-thumb{
+		border-radius: 10px;
+		-webkit-box-shadow: inset 0 0 5px rgba(255,255,255,0.5);
+		background: #535353;
+	}
+	::-webkit-scrollbar-track{
+		-webkit-box-shadow: inset 0 0 5px rgba(100,100,100,0.2);
+		border-radius: 10px;
+		background: #F00;
+	}
+
+@media screen and (max-width:852px) and (min-width:768px){
+	.navbar-text{
+		display: none;
+	}
+}
+
+
+
+

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>单选复选</title>
+	<style>
+		.switch{
+			overflow: hidden;
+			float: left;
+			text-align: center;
+			line-height: 30px;
+			font-size: 12px;
+			margin:5px;
+			background: #eaeaea;
+			width: 110px;
+			height: 30px;
+		}
+		.switch input{
+			display: none;
+		}
+		.switch .slider{
+			position: relative;
+		}
+		.switch .slider::before{
+			content: '';
+			position: absolute;
+			width: 15px;
+			height: 15px;
+			background: url(img/input-unchecked.png);
+			top: 8px;
+			margin-left: -20px;
+		}
+		.switch input:checked + .slider{
+			background: lightblue;
+		}
+		.switch input:checked + .slider::before{
+			background: url(img/input-checked.png);
+		}
+		
+	</style>
+</head>
+<body>
+	<p><h4>单选框</h4></p>
+	<label class="switch">
+		<input type="radio" name="profession">
+		<div class="slider">前端</div>
+	</label>
+
+	<label class="switch">
+		<input type="radio" name="profession">
+		<div class="slider">后端设计师</div>
+	</label><br/><br/>
+
+	<p><h4>复选框</h4></p>
+	<label class="switch">
+		<input type="checkbox">
+		<div class="slider">后端bb师</div>
+	</label>
+	<label class="switch">
+		<input type="checkbox">
+		<div class="slider">后端cc师</div>
+	</label>
+	<label class="switch">
+		<input type="checkbox">
+		<div class="slider">后端ff师</div>
+	</label>
+</body>
+</html>

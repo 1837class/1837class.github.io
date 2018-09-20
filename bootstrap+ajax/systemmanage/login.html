@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录页面</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/login.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="lib/js/bootstrap.min.js"></script>
+    
+</head>
+
+<body>
+    <div class="modal fade" id="myModal">
+    <!--
+        modal-lg 大尺寸
+        modal-sm 小尺寸
+        不加 就是默认大小
+        tabindex  当用键盘上面tab键切换位置的的顺序 默认是0
+    -->
+        <div class="modal-dialog" tabindex='-1'>
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal"><span>&times;</span></button>
+                    登录提示
+                </div>
+                <div class="modal-body">
+                    登录失败，请重试
+                </div>
+                <div class="modal-footer">
+                    <a class="btn btn-primary" href="#" id="confirm" data-dismiss="modal">确认</a>
+                </div>
+            </div>
+        </div>
+    </div><!-- end 模态框 -->
+
+
+
+
+    <div class="container">
+            <form class="form-horizontal" id="formBox" >
+                <div class="form-group ">
+                    <h3 class="col-md-7 control-label">登录管理界面</h3>
+                </div>
+                <div class="form-group">
+                     <span id="formInsident" class="col-sm-2 col-sm-offset-4">(error)</span> 
+                    <!-- 表单头部错误提示信息 -->
+                </div>
+                <div class="form-group">
+                    <label for="inputUser" class="col-sm-4  control-label ">登录名：</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <!-- 添加框前小图标，需要包裹的类-->
+                            <span class="glyphicon glyphicon-user input-group-addon" aria-hidden="true"></span>
+                            <!-- 小图标的位置与书写位置有关 -->
+                            <input type="text" class="form-control" id="inputUser" placeholder="username" name="username" data-toggle='tooltip'>
+                            
+                        </div>
+                    </div>
+                    <span id="helpBlock1" class="help-block">(error) A block of help text that breaks  .</span> <!-- 行内错误信息提示 -->
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword" class="col-sm-4 control-label ">密码：</label>
+                    <div class="col-md-5">
+                        <div class="input-group">
+                            <span class="glyphicon glyphicon-lock input-group-addon" aria-hidden="true"></span>
+                            <input type="password" class="form-control" id="inputPassword" placeholder="password" data-toggle='tooltip' name="password">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="identifyingCode" class="col-sm-4 control-label ">验证码：</label>
+                    <div class="col-md-2">
+                        <input type="text" class="form-control" id="identifyingCode" name="identifyingCode" data-toggle='tooltip' >
+                    </div>
+                    <div class="col-md-1">
+                        <!--  这里直接调用了百度登录验证码的网址  -->
+                        <img src="https://passport.baidu.com/cgi-bin/genimage?njGf406dec64d1cf5a1027215e2a6016300d5a35b069c018a31"/>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-10 col-md-push-4" >
+                        <!-- <button type="submit" class="btn btn-default">
+                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span> &nbsp;登录
+                        </button> -->
+                        <input type="submit" data-loading-text='正在登录' class="btn btn-primary col-md-2 col-sm-2 col-xs-2" value='登录'>
+                        <input class="btn btn-primary col-md-2 col-sm-2 col-xs-2 col-md-offset-1" value='重置'>
+                    </div>
+                </div>
+            </form>
+        </div>
+</body>
+<script type="text/javascript">
+    $(function(){
+            $('#formBox').validate({
+                rules:{
+                    username:{
+                        required:true//不允许为空
+                    },
+                    password:{
+                        required:true,
+                        rangelength:[4,20]
+                    },
+                    identifyingCode:{
+                        required:true
+                    }
+                },
+                messages:{
+                    username:{
+                        required:"登录名不能为空"
+                    },
+                    password:{
+                         required:"密码不能为空",
+                         rangelength:'密码长度为4-20位'
+                    },
+                    identifyingCode:{
+                         required:"验证码输入错误"
+                    }
+                },
+                //验证通过执行的方法
+                unhighlight:function(element,error,errorClass){
+                        $(element).tooltip('destroy');
+                },
+                //验证未通过执行的方法
+                errorPlacement:function(error,element){
+                    //如果.tooltip存在 即为第二次及以上错误 第二次错误需要修改data-original-title属性 tooltip('show')
+                    if($(element).next('.tooltip').length>0){
+                        $(element).attr('data-original-title',error.text()).tooltip('show');
+                    }else{
+                        //第一次错误调用的提示
+                        $(element).attr('title',error.text()).tooltip();
+                    }
+                },
+                //所有验证通过准备提交数据
+                submitHandler:function(){
+                    $('[type="submit"]').button('loading');
+                    $.post('http://192.168.15.2/gz0820web/login',$('#formBox').serializeArray(),function(data){
+                        if(data.status!=1){
+                            $('[type="submit"]').button('reset');
+                        }else{
+                            setInterval(function(){
+                                location.href="http://www.yq.com/systemmanage/backstage2.html";
+                            },2000);
+                        }
+                        $('.modal-body').text(data.msg);
+                        $('.modal').modal();
+                    },'json');
+                    return false;
+                }
+            });
+});
+
+        
+</script>
+</html>

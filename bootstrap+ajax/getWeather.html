@@ -1,0 +1,320 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>ajax作业</title>
+	<link rel="stylesheet" href="asset/css/bootstrap.css">
+	<script src="asset/js/jquery.js"></script>
+	<script src="asset/js/bootstrap.js"></script>
+	<style>
+		@font-face{
+			src:url('asset/fonts/weather.ttf');
+			font-family: 'weather';
+		}
+		.date::before{
+			content: '\e001';
+			font-family: 'weather';
+			width: 30px;
+			height: 30px;
+			color: #1f8ce8;
+			margin-right: 10px;
+			font-size: 20px;
+			
+		}
+		.wendu{
+			text-align: center;
+			margin-top: 30px;
+			font-size: 40px;
+		}
+		.wendu::before{
+			content: '\e002';
+			font-family: 'weather';
+			color: #1f8ce8;
+			margin-right: 5px;
+			font-size: 80px;
+		}
+		.tip::before{
+			content: '\e007';
+			font-family: 'weather';
+			color: #1f8ce8;
+			margin-right: 10px;
+			font-size: 20px;
+		}
+		.fx::before{
+			content: '\e004';
+			font-family: 'weather';
+			color: #1f8ce8;
+			margin-right: 5px;
+			font-size: 20px;
+		}
+		.cloudy::before{
+			content: '\e006';
+			font-family: 'weather';
+			color: #1f8ce8;
+			margin-right: 5px;
+			font-size: 60px;
+		}
+
+		.fl::before{
+			content: '\e003';
+			font-family: 'weather';
+			color: #1f8ce8;
+			margin-right: 5px;
+			font-size: 18px;
+		}
+		.container{
+			margin-top: 20px;
+		}
+		.weatherList{
+			margin-top: 20px;
+		}
+		.content1,.content2,.content3{
+			margin-left: 18px;
+			margin-top: 15px;
+			height: 300px;
+			border: 1px solid black;
+		}
+		.content2 h4,.content3 h4,.cloudy,.cloudyWord,.dayTemper,.fl{
+			text-align: center;
+		}
+		.cloudyWord{
+			margin-top: -15px;
+		}
+		.dayTemper{
+			margin-top: 45px;
+			color: rgba(0,0,0,0.5);
+		}
+		.dayTemper {
+			font-size: 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+		<label>
+			<div class="input-group">				
+				<span class="input-group-addon" id="basic-addon1">请选择城市：</span>
+				<select class="form-control selectChange">
+		            <option>北京</option>
+		            <option>深圳</option>
+		            <option>上海</option>
+		            <option>广州</option>
+		            <option>杭州</option>
+		            <option>天津</option>
+		            <option>成都</option>
+		            <option>韶关</option>
+		        </select>
+			</div>
+		</label>
+		</div>
+
+		<div class="row clearfix weatherList">
+				<div class="col-md-12 column">
+				<div class="tabbable" id="tabs-289269">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a rel="nofollow" href="#panel-459064" data-toggle="tab">今天</a>
+						</li>
+						<li>
+							<a rel="nofollow" href="#panel-545092" data-toggle="tab">未来五天预报</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="tab-pane active" id="panel-459064">
+							<div class="row row-today">
+								<div class="col-xs-4 content1">
+									<h4 class="date"></h4>
+									<p class="wendu"></p>
+									<span class="fx col-xs-10 col-xs-offset-8"></span>
+									<p class="tip">感冒指数：<span></span></p>
+								</div>
+								<div class="col-xs-2 content2">
+									<h4><span class="contentDay"></span>号白天</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+								<div class="col-xs-2 content3">
+									<h4><span class="contentDay"></span>号夜间</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+							</div>
+							
+						</div>
+						<div class="tab-pane" id="panel-545092">
+							<div class="row">
+								<div class="col-xs-4 content1">
+									<h4 class="date"></h4>
+									<p class="wendu"></p>
+									<span class="fx col-xs-10 col-xs-offset-8"></span>
+									<p class="tip">感冒指数：<span></span></p>
+								</div>
+								<div class="col-xs-2 content2">
+									<h4><span class="contentDay"></span>号白天</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+								<div class="col-xs-2 content3">
+									<h4><span class="contentDay"></span>号夜间</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4 content1">
+									<h4 class="date"></h4>
+									<p class="wendu"></p>
+									<span class="fx col-xs-10 col-xs-offset-8"></span>
+									<p class="tip">感冒指数：<span></span></p>
+								</div>
+								<div class="col-xs-2 content2">
+									<h4><span class="contentDay"></span>号白天</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+								<div class="col-xs-2 content3">
+									<h4><span class="contentDay"></span>号夜间</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4 content1">
+									<h4 class="date"></h4>
+									<p class="wendu"></p>
+									<span class="fx col-xs-10 col-xs-offset-8"></span>
+									<p class="tip">感冒指数：<span></span></p>
+								</div>
+								<div class="col-xs-2 content2">
+									<h4><span class="contentDay"></span>号白天</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+								<div class="col-xs-2 content3">
+									<h4><span class="contentDay"></span>号夜间</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4 content1">
+									<h4 class="date"></h4>
+									<p class="wendu"></p>
+									<span class="fx col-xs-10 col-xs-offset-8"></span>
+									<p class="tip">感冒指数：<span></span></p>
+								</div>
+								<div class="col-xs-2 content2">
+									<h4><span class="contentDay"></span>号白天</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+								<div class="col-xs-2 content3">
+									<h4><span class="contentDay"></span>号夜间</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-xs-4 content1">
+									<h4 class="date"></h4>
+									<p class="wendu"></p>
+									<span class="fx col-xs-10 col-xs-offset-8"></span>
+									<p class="tip">感冒指数：<span></span></p>
+								</div>
+								<div class="col-xs-2 content2">
+									<h4><span class="contentDay"></span>号白天</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+								<div class="col-xs-2 content3">
+									<h4><span class="contentDay"></span>号夜间</h4>
+									<p class="cloudy"></p>
+									<p class="cloudyWord">多云</p>
+									<p class="dayTemper"></p>
+									<p class="fl"><span></span>级</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+$(function(){
+	getWeatherAjax('北京');
+
+	var cityName ;
+	$('.selectChange').change(function(){
+		cityName = $(this).children(':selected').text();
+		getWeatherAjax(cityName);
+	})
+
+	function getWeatherAjax(cityName){
+		$.get('https://www.apiopen.top/weatherApi',{
+			city:cityName
+		},function(responsedata){
+			if(responsedata.code== 200 && responsedata.msg=='成功!'){
+				console.log(responsedata)
+				var data = responsedata.data;
+				var yesterdayData = data.yesterday;
+				$('.row-today .date').html(yesterdayData.date);
+				$(' .contentDay').html(parseInt(yesterdayData.date))
+				$('.cloudyWord').html(yesterdayData.type)
+				$('.wendu').html(data.wendu)
+				$('.tip span').html(data.ganmao);
+				$('.fx').html(yesterdayData.fx);
+				$('.dayTemper').html(yesterdayData.high)
+				$('.fl span').html(parseInt(data.wendu/9))
+				$('.content3 .dayTemper').html(yesterdayData.low)
+				$('.content3 .fl span').html(parseInt(data.wendu/7))
+
+				var forecastList = $('#panel-545092 .row');
+				forecastList.each(function(listIndex, listEl) {
+					$.each(data.forecast,function(foreIndex,foreEl){
+						if(listIndex == foreIndex){
+							forecastList.eq(listIndex).find('.date').html(data.forecast[foreIndex].date)
+							forecastList.eq(listIndex).find('.wendu').html(getNumber(data.forecast[foreIndex].high)-2)	
+							forecastList.eq(listIndex).find('.contentDay').html(parseInt(data.forecast[foreIndex].date))
+							forecastList.eq(listIndex).find('.cloudyWord').html(data.forecast[foreIndex].type)
+							forecastList.eq(listIndex).find('.fx').html(data.forecast[foreIndex].fengxiang)
+							forecastList.eq(listIndex).find('.dayTemper').html(data.forecast[foreIndex].high)
+							forecastList.eq(listIndex).find('.content3 .dayTemper').html(data.forecast[foreIndex].low)
+						}
+					})
+				});
+				
+			}
+		},'json')
+	}
+
+	function getNumber(str){  /*一个含其他字符的字符串匹配以下正则表达式，得到就是数字*/
+		return str.replace(/[^0-9]/ig,"") ;
+	}
+})
+</script>
+</html>

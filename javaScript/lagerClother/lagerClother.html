@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#box_out{
+				width: 900px;
+				position: relative;
+				margin: 0 auto;
+				overflow: hidden;  /*用于清除浮动*/
+			}	
+			#box_out div {
+				float :left;
+				width: 200px;
+				height: 270px;
+				border: 1px solid #000000;
+				margin-left: 10px;
+				text-align: center;
+				padding-top: 30px;
+				margin-left: 5px;	
+			}
+			#boxshow {
+				background: white;
+				width: 300px;
+				height: 350px;
+				display: none;
+				text-align: center;
+				padding-top: 30px;
+				border: 1px solid #000000;
+				position: absolute;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box_out">
+			<div id="box1"><img src="clother_img/shirt_1.jpg" width="200" id="box1"/></div>
+			<div id="box2"><img src="clother_img/shirt_2.jpg" width="200" id="box2"/></div>
+			<div id="box3"><img src="clother_img/shirt_3.jpg" width="200" id="box3"/></div>
+			<div id="box4"><img src="clother_img/shirt_4.jpg" width="200" id="box4"/></div>
+		</div>
+		<div  id="boxshow"><img src="" /></div>
+			
+	</body>
+	<script type="text/javascript">
+		box_out.addEventListener("mousemove",function(event){
+				var moveX = event.clientX
+				var moveY = event.clientY
+				var kind = 0    //kind用来标识着这是哪件衣服
+				switch (event.target.id){
+					case "box1":
+						kind = 1
+						box_show(moveX,moveY,kind)
+						break;
+					case "box2":
+						kind = 2
+						box_show(moveX,moveY,kind)
+						break;
+					case "box3":
+						kind = 3
+						box_show(moveX,moveY,kind)
+						break;
+					case "box4":
+						kind = 4
+						box_show(moveX,moveY,kind)
+						break;
+					default:
+						break;
+				}
+		},false)
+		
+		box_out.addEventListener("mouseout",function(){
+			boxshow.style.display = 'none'
+		},false)
+		
+		function box_show(X,Y,k){   //鼠标移动到衣服上，显示出放大的那个div
+			var img = document.createElement("img")
+			img.setAttribute('width','300')
+			if(k == 1){
+				img.src = 'clother_img/shirt_1_big.jpg'
+			}else if(k == 2){
+				img.src = 'clother_img/shirt_2_big.jpg'
+			}else if(k == 3){
+				img.src = 'clother_img/shirt_3_big.jpg'
+			}else if(k == 4){
+				img.src = 'clother_img/shirt_4_big.jpg'
+			}
+			boxshow.replaceChild(img,boxshow.childNodes[0])
+			boxshow.style.display = 'block'
+			boxshow.style.left = X+20 + 'px'
+			boxshow.style.top = Y-10 + 'px'
+		}
+		
+		var date1 = new Date();
+		console.log(date1.getDate());
+
+  
+	</script>
+</html>

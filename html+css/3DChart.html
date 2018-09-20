@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>3D柱子动画原理实现</title>
+    <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="stage">
+        <div class="chart">
+            <div class="topFont">
+                <h2>Welcome To</h2>
+                <h2>My pohoto</h2>
+            </div>
+            <!-- 思想：span以左边轴为定点，然后旋转起来90度，其宽就是柱子的高度。即可以通过改变span的长度实现柱子的不同高度 -->
+            <li><span>1000</span></li>
+            <li><span>2000</span></li>
+            <li><span>3000</span></li>
+            <li><span>4000</span></li>
+            <li><span>5000</span></li>
+            <li><span>6000</span></li>
+            <div class="footerFont"><h1>930,000</h1></div>
+        </div>
+    </div>
+
+    <style>
+        body,html{
+            margin: 0;
+            padding: 0; 
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(100, 150, 100, 0.9), rgba(0, 0, 100, 0.3));
+        }
+
+        .stage {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(120deg, rgba(100, 150, 100, 0.9), rgba(0, 0, 100, 0.3));
+            perspective: 1000px;
+        }
+        
+        .chart {
+            position: absolute;
+            top: 5%;
+            left: 35%;
+            width: 400px;
+            height: 550px;
+            background: gray;
+            background-image: url(asset/images/landscape.jpg);
+            margin: 0px auto;
+            text-align: center;
+            /* transform: rotateY(45deg); */
+            border-radius: 20px;
+            transform-style: preserve-3d;
+            transition: all 0.5s;
+           
+        }
+        
+        .chart::before{
+            content: '';
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.3);
+            transition: all 0.5s;
+            border-radius: 20px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .chart .topFont{
+            color: rgba(255,255,255,0.7);
+            width: 300px;
+            height: 100px;
+            /*background: pink;*/
+            position: absolute;
+            top: 120px;
+            left: 50px;
+            transition: all 0.1s;
+            
+        }
+
+        .chart li {
+            list-style: none;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            margin: 250px 20px;
+            position: relative;
+            /*font-size: 0;*/
+        }
+        .chart .footerFont{
+            position: absolute;
+            color: rgba(255,255,255,0.7);;
+            width: 200px;
+            height: 40px;
+            /*background: pink;*/
+            bottom: 200px;
+            left: 100px;
+
+        }
+
+        .chart span {
+            width: 0px;
+            height: 20px;
+            background:white;
+            display: inline-block;
+            font-size: 0;
+            /*span以左边轴为定点，然后旋转起来90度，其宽就是柱子的高度。即可以通过改变span的长度实现柱子的不同高度*/
+            transform-origin: 0% 50% 0;
+            transform: rotate(-45deg) rotateY(-90deg);
+            /* transform: rotateY(-90deg); */
+            transform-style: preserve-3d;
+            transition: all 0.5s ease-in-out;
+            position: absolute;
+        }
+
+        .chart span.toggleFont{
+            font-size: 14px;
+        }
+        
+
+        .chart span::before {
+            content: '';
+            /*display: block;*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            background: white;
+            transform-origin: 0% 50% 0;
+            transform: rotateY(90deg) translateZ(0px);
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .chart span::after {
+            content: '';
+            /*display: block;*/
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            transform-origin: 50% 100% 0;
+            background: rgba(50, 150, 100, 0.7);
+            transform: rotateX(90deg);
+        }
+
+        .chart.active {
+            transform: rotateX(55deg) translateY(80px);
+            box-shadow: 0px 20px 10px black;
+        }
+
+        .chart.active span.spanActive-1{
+            width: 128px;
+        }
+        .chart.active span.spanActive-2{
+            width: 68px;
+        }
+        .chart.active span.spanActive-3{
+            width: 148px;
+        }
+        .chart.active span.spanActive-4{
+            width: 88px;
+        }
+        .chart.active span.spanActive-5{
+            width: 104px;
+        }
+        .chart.active span.spanActive-6{
+            width: 57px;
+        }
+
+        .chart.active span.spanActive-1::before {
+            content: 'M';
+            transform: rotateY(90deg) translateZ(128px);
+        }
+        .chart.active span.spanActive-2::before {
+            content: 'Y';
+            transform: rotateY(90deg) translateZ(68px);
+        }
+        .chart.active span.spanActive-3::before {
+            content: 'R';
+            transform: rotateY(90deg) translateZ(148px);
+        }
+        .chart.active span.spanActive-4::before {
+            content: 'Q';
+            transform: rotateY(90deg) translateZ(88px);
+        }
+        .chart.active span.spanActive-5::before {
+            content: 'H';
+            transform: rotateY(90deg) translateZ(104px);
+        }
+        .chart.active span.spanActive-6::before {
+            content: 'L';
+            transform: rotateY(90deg) translateZ(57px);
+        }
+        .chart.active .topFont{
+            transform: translateZ(70px) ;
+        }
+        .chart.active::before{
+            background: rgba(0,0,0,0.6);
+        }
+    </style>
+    <script>
+        $('.chart').click(function (e) {
+            $(this).toggleClass('active');
+            
+            if($(this).hasClass('active')){
+                $(this).find('.footerFont').css('color','white');
+                $(this).find('.topFont').fadeOut(400);
+
+            }else{
+                $(this).find('.footerFont').css('color','rgba(255,255,255,0.7)');
+                $(this).find('.topFont').fadeIn(500);
+
+            }
+            $('.chart li').find('span').toggleClass('toggleFont');
+            $('.chart li').eq(0).find('span').toggleClass('spanActive-1');
+            $('.chart li').eq(1).find('span').toggleClass('spanActive-2');
+            $('.chart li').eq(2).find('span').toggleClass('spanActive-3');
+            $('.chart li').eq(3).find('span').toggleClass('spanActive-4');
+            $('.chart li').eq(4).find('span').toggleClass('spanActive-5');
+            $('.chart li').eq(5).find('span').toggleClass('spanActive-6');
+
+
+        });
+        
+    </script>
+</body>
+
+</html>

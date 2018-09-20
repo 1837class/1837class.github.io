@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>淘宝搜索栏-联想功能</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <style>
+    * {
+        margin: 0;
+        padding: 0
+    }
+
+    .search {
+        width: 55%;
+        margin: 40px auto;
+        overflow: hidden;
+    }
+
+    input {
+        outline: none;
+    }
+
+    #findThing {
+        float: left;
+        width: 70%;
+        height: 35px;
+        border: 1px solid orange;
+        margin-left: 80px;
+        text-indent: 5px;
+    }
+
+    #searchBtn {
+        float: left;
+        width: 100px;
+        margin-top: -2px;
+        height: 39px;
+        color: white;
+        font-size: 16px;
+        background-color: orange;
+        border: 1px solid orange;
+        cursor: pointer;
+    }
+
+    .search ul {
+        list-style: none;
+        width: 70%;
+        border: 1px solid orange;
+        margin-left: 80px;
+    }
+
+    .liclass {
+        width: 100%;
+        line-height: 25px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .active {
+        background-color: orange;
+        color: white;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="search">
+        <input type="text" id="findThing" size="100" placeholder="请输入...">
+        <input type="button" id="searchBtn" value="搜索">
+        <ul></ul>
+    </div>
+</body>
+<script type="text/javascript">
+function search(rdata) { //自定义接收服务器数据的函数
+    $('.search ul li').remove();
+    for (var i in rdata.result) {
+        $('<li class="liclass"/>').html(rdata.result[i][0]).appendTo('.search ul');
+    };
+
+    $('.search ul li').css('textIndent', '5px').hover(function() {
+        $(this).addClass('active').siblings().removeClass('active')
+        var liText = $(this).html();
+        $('#findThing').val(liText);
+    }, function() {
+        $(this).removeClass('active');
+    });
+
+
+}
+
+$(function() {
+    $('#findThing').keyup(function(e) {
+        if (e.keyCode == 38 || e.keyCode == 40 || e.keyCode == 13) return;
+        var value = $(this).val();
+        $.ajax({
+            url: "https://suggest.taobao.com/sug?code=utf-8&callback=search",
+            dataType: "jsonp",
+            data: { q: value },
+            type: "get",
+            jsonp: true //自定义jsonp回调函数   
+        })
+    }).keydown(function(e) {
+        var active = $('.search ul li.active'); //获取有底色的li
+        //下键
+        if (e.keyCode == 40) {
+            if (active.length == 0 || active.next().length == 0) {
+                $('.search ul li').first().addClass('active').siblings().removeClass('active');
+            } else {
+                $(active).next().addClass('active').siblings().removeClass('active');
+            }
+            $('[type="text"]').val($('li.active').text());
+        } else if (e.keyCode == 38) {
+            //上键
+            if (active.prev().length == 0 || active.length == 0) {
+                $('.search li').last().addClass('active').siblings().removeClass('active');
+            } else {
+                $(active).prev().addClass('active').siblings().removeClass('active');
+            }
+            $('[type="text"]').val($('li.active').text());
+        } else if (e.keyCode == 13) {
+            location.href = "https://s.taobao.com/search?q=" + $('[type="text"]').val();
+            //按下Enter，就跳转页面到淘宝搜索
+        }
+
+    });
+    $('#findThing').focusout(function() { //搜索框焦点事件
+        $('.search ul').css('display', 'none')
+    }).focusin(function() {
+        if ($(this).val() != null) {
+            $('.search ul').css('display', 'block')
+        }
+    });
+
+    $('#searchBtn').click(function(){
+	var value = $('#findThing').val();
+	if(value ==''){
+		return false;
+    }else{
+	location.href = "https://s.taobao.com/search?q=" + value 
+    }
+	
+    });
+
+})
+</script>
+
+</html>

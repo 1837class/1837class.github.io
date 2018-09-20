@@ -1,0 +1,196 @@
+﻿body,
+html {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: gray;overflow:hidden;
+}
+@font-face{
+  src:url('asset/fonts/sidenav.ttf');
+  font-family: 'sidenav';
+}
+
+/*【注意重点！！】： z-index  必须作用在同一父元素中的同级子元素*/
+.box{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  perspective:1000px;
+  -webkit-perspective:1000px;
+}
+.stage{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+}
+.container{
+  z-index:99;  
+  width: 100%;
+  height: 100%;
+  background: white;
+  transition: all 0.6s;
+  transform-origin: 100% 50%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: hidden;
+}
+.grayTip{
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: rgba(0,0,0,0.2);
+  display: none;
+}
+.stage div[class^='leftNav']{
+  width: 22%;
+  height: 100%;
+  background: #48a770;
+  overflow:auto;
+  position: absolute; 
+  z-index: -999;
+}
+.leftNav {
+  visibility: hidden;
+  transition: all 0.6s;
+  transform: translateY(-100%) translateX(-100%);
+}
+.leftNav-eq1 {  
+  transition: all 0.6s 0.1s;
+  left: -22%;
+  visibility: hidden;
+  transform:rotateY(138deg);
+  transform-origin:0% 50%;
+}
+.leftNav-eq2 {  
+  transition: all 0.6s;
+  left: -22%;
+  visibility: hidden;
+}
+.leftNav-eq3 {  
+  transition: all 0.6s;
+  left: 10%;
+  visibility: hidden;
+}
+.leftNav-eq4 {  
+  transition: all 0.6s;
+  transform: scale(0.7);
+  left: 0;
+  visibility: hidden;
+}
+
+.navlist {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.navlist li {
+  width: 100%;
+  height: 50px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.navlist li:nth-of-type(1) {
+  text-align: center;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 30px;
+  color: rgba(0, 0, 0, 0.3);
+}
+
+.navlist li:nth-of-type(1)::before{
+  color: rgba(0, 0, 0, 0.3);
+  content: '\e002';
+  font-family:'sidenav';
+  font-size:35px; 
+  margin-left: -50px;
+  margin-right: 20px;
+}
+.navlist li:not(.logo) span {
+  color: rgba(255, 255, 255, 0.7);
+  padding-left: 50px;
+  line-height: 50px;
+  margin-left: -10px;
+}
+.navlist li:not(.logo) span::before{
+    font-family: 'sidenav';
+    color: rgba(255,255,255,0.6);
+    font-size: 20px;
+    margin-left: -10px;
+    margin-right: 20px;
+}
+.navlist li:nth-of-type(2) span::before{
+  content: '\e001';
+  padding-left: 10px;
+}
+.navlist li:nth-of-type(3) span::before{
+  content: '\e003';
+}
+.navlist li:nth-of-type(4) span::before{
+  content: '\e004';
+  padding-left: 5px;
+}
+.navlist li:nth-of-type(5) span::before{
+  content: '\e005';
+  margin-left: -14px; 
+}
+.navlist li:nth-of-type(6) span::before{
+  content: '\e006';
+  padding-left: 10px;
+}
+
+.content{
+  width: 50%;
+  height: 100%;
+  margin: 0px auto;
+  text-align: center;
+}
+.contentTitle{
+  color: #48a770;
+  font-size: 40px;
+  line-height: 200px;
+}
+.content button{
+  color: rgba(255,255,255,0.8);
+  padding: 15px;
+  background: #48a770;
+  border: 0px;
+  border-radius: 5%;
+  outline: none;
+}
+.content button:hover{
+  background: #388a5a;
+}
+.container.active{
+  transform: translateX(22%);
+}
+.container.active-eq5{
+  transform:translateX(-5%) rotateY(-15deg) scale(0.8) ;
+}
+.leftNav.active{
+  visibility: visible;
+  transform: translateY(0);
+}
+.leftNav-eq1.active{
+  visibility: visible;
+  transform:translateX(100%) rotateY(0deg) ;
+}
+.leftNav-eq2.active{
+  visibility: visible;
+  left: 0;
+}
+.leftNav-eq3.active{
+  visibility: visible;
+  left: 0;
+}
+.leftNav-eq4.active{
+  visibility: visible;
+  transform: scale(1);
+}
+.grayTip.active{
+  display: block;
+}

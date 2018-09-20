@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D立方体效果</title>
+	<style>
+		.float{
+			width: 100px;
+			height: 100px;
+			margin: 100px auto;
+			/*注意：透视效果必须放在最外层父元素，不然很诡异*/
+			perspective: 500px;
+			-webkit-perspective: 500px;
+		}
+		.box{
+			width: 100%;
+			height: 100%;
+			/*注意：3d声明以及动画效果的调试要放在直接父元素这里*/
+			transform-style: preserve-3d;
+			position: relative;
+			animation: float 5s linear infinite;
+		}
+		.box div{
+			position: absolute;
+			width: 100px;
+			height: 100px;
+			border-radius: 50px;
+			transition: all 0.5s;
+		}
+		.greenBox{
+			background : green;
+			transform: translateZ(80px);
+		}
+		.redBox{
+			background: red;
+			transform: translateX(-100px) rotateY(90deg);
+		}
+		.blueBox{
+			background: blue;
+			transform: translateX(100px) rotateY(90deg);
+		}
+		.orangeBox{
+			background: orange;
+			transform: translateY(100px) rotateX(90deg);
+		}
+		.lightblueBox{
+			background: lightblue;
+			transform: translateZ(-100px);
+		}
+		.pinkBox{
+			background: pink;
+			transform: translateY(-100px) rotateX(90deg); 
+		}
+		@keyframes float {
+			40%{
+				transform: rotateY(360deg);
+			}
+			41%{
+				transform: rotateX(360deg)
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="float">
+		<div class="box">
+			<div class="greenBox"></div>
+			<div class="redBox"></div>
+			<div class="blueBox"></div>
+			<div class="orangeBox"></div>
+			<div class="lightblueBox"></div>
+			<div class="pinkBox"></div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+</head>
+
+<body>
+    <div class="circleArea">
+        <!-- 外围的转圈div -->
+        <div class="circle-1"></div>
+        <!-- 内围的淡入淡出div -->
+        <div class="circle-2">
+            <div class="font">
+                <h2>Welcome To</h2>
+                <p>My Home</p>
+            </div>
+        </div>
+    </div>
+    <div class="circleArea">
+        <div class="imgCircle"></div>
+        <div class="fontCircle">
+            <div class="font">
+                <h2>Welcome To</h2>
+                <p>My Home</p>
+            </div>
+        </div>
+    </div>
+    <style>
+    .circleArea {
+        width: 250px;
+        height: 250px;
+        position: relative;
+    }
+
+    .circle-1,.circle-2 
+    ,.imgCircle,.fontCircle {
+        width: 230px;
+        height: 230px;
+        background: white;
+        border-radius: 50%;
+    }
+
+    .circle-1 {
+        position: absolute;
+        border: 10px solid red;
+        border-left-color: red;
+        border-right-color: green;
+        border-bottom-color: green;
+        transition: all 1s;
+    }
+
+    .circle-2 {
+        position: relative;
+        margin-left: 10px;
+        top: 10px;
+        background-image: url(img/ihover-1.jpg);
+        background-position: center center;
+    }
+
+    .font {
+        /*调整文字位置*/
+        padding-top: 50px;
+        border-radius: 50%;
+        color: white;
+        background: rgba(0, 0, 0, 0.6);
+        text-align: center;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        margin: auto;
+    }
+    .circle-2 .font{
+    	display: none;
+    }
+
+    .circleArea:hover .circle-1 {
+        transform: rotate(180deg);
+    }
+
+    .imgCircle{
+    	position: relative;
+        margin-left: 10px;
+        top: 10px;
+        background-image: url(img/ihover-3.jpg);
+        background-position: center center;
+        border: 15px solid rgba(255,255,255,0.5);
+        box-sizing: border-box;  /*标明是设置内边距属性*/
+        transition: all 0.5s
+    }
+    .fontCircle{
+		position: absolute;
+		top: 10px;
+		left: 310px;
+		opacity: 0;
+		transition: all 0.5s;
+		/*以下这句是关键 不然鼠标放到.fontCircle上也会触发左滑动画*/
+		pointer-events: none;
+    }
+    .circleArea:hover .imgCircle{
+    	transform: rotate(-90deg);
+    }
+    
+    .circleArea:hover .fontCircle{
+    	transform: translateX(-300px) ;
+    	opacity: 0.8
+    }
+    </style>
+</body>
+<script type="text/javascript">
+$('.circleArea').hover(function() {
+    $(this).find('.circle-2 .font').stop(true).fadeIn(1000)
+}, function() {
+    $(this).find('.circle-2 .font').stop(true).fadeOut(1000)
+})
+
+</script>
+
+</html>

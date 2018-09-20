@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>后台界面</title>
+    <link rel="stylesheet" href="lib/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/backstage2.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <!-- 先导入jQ再导入bootstrap.js，因为后面的会覆盖前面的 -->
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="lib/js/bootstrap.js"></script>
+    <script type="text/javascript" src="js/backstage.js"></script>
+</head>
+
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle='collapse' data-target='#topMenu'>
+                    <i class="icon-bar"></i>
+                    <i class="icon-bar"></i>
+                    <i class="icon-bar"></i>
+                </button>
+                <a href="#" class="navbar-brand">粤嵌管理平台</a>
+            </div>
+            <div class="collapse navbar-collapse" id="topMenu">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">内容管理</a></li>
+                    <li><a href="#">用户管理</a></li>
+                    <li><a href="#">客户管理</a></li>
+                    <li><a href="#">栏目管理</a></li>
+                    <li><a href="#">产品管理</a></li>
+                    <li><a href="#">订单管理</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown"><a href="#" data-toggle='dropdown'>
+                        用户管理<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">个人信息</a></li>
+                            <li><a href="#">修改密码</a></li>
+                            <li><a href="#">上传头像</a></li>
+                            <li><a href="#">站内消息<span class="badge">13</span></a></li>
+                            <li class="divider" role="separator"></li>
+                            <li><a href="#">Separated link</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <p class="navbar-text navbar-right"><a href="login.html" class="navbar-link">退出登录</a></p>
+                <p class="navbar-text navbar-right">欢迎<a href="" class="navbar-link">xxx</a>登录</p>
+
+            </div>
+        </div>
+    </div>
+    <!-- end navbar 导航栏-->
+    <div class="container-fluid containerBox">
+        <div class="row clearfix">
+            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 hidden-xs leftbox">
+                <ul class="nav navbar">
+                    <li><a href="#firstSpread" data-toggle='collapse'><span class="glyphicon glyphicon-user"></span>用户管理
+                    <span class="glyphicon glyphicon-menu-down iconSpreadTop"></span>
+                    </a>
+                    </li>
+                    <div class="list-group collapse " id="firstSpread">
+                        <a href="#userlist" class="list-group-item" data-toggle="tab">
+                            <span class="glyphicon glyphicon-unchecked " aria-hidden="true" ></span>
+                                 用户列表
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#adduser" class="list-group-item" data-toggle="tab">
+                            <span class="glyphicon glyphicon-unchecked " aria-hidden="true"></span>
+                                 添加用户
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked " aria-hidden="true"></span>
+                                 用户列表
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked " aria-hidden="true"></span>
+                                 用户列表
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked " aria-hidden="true"></span>
+                                 用户列表
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked " aria-hidden="true"></span>
+                                 用户列表
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <li><a href="#secondSpread" data-toggle='collapse'><span class="glyphicon glyphicon-file"></span>信息查询
+                    <span class="glyphicon glyphicon-menu-down iconSpreadTop"></span>
+                    </a>
+                    </li>
+                    <div class="list-group collapse" id="secondSpread">
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                                信息中心
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                                信息中心
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                                信息中心33
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                                信息中心
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                    </div>
+                    <li><a href="#thirdSpread" data-toggle='collapse'><span class="glyphicon glyphicon-tasks"></span>数据库管理
+                    <span class="glyphicon glyphicon-menu-down iconSpreadTop"></span>
+                    </a>
+                    </li>
+                    <div class="list-group collapse" id="thirdSpread">
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                               数据库管理
+                            <span class="glyphicon glyphicon-triangle-left iconSpread" aria-hidden="true"></span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <span class="glyphicon glyphicon-unchecked"></span>
+                                数据库系统操作
+                            <span class="glyphicon glyphicon-triangle-left iconSpread " aria-hidden="true"></span>
+                        </a>
+                    </div>
+                </ul>
+            </div>
+            <!-- end leftbox 侧边导航-->
+            <div class="col-md-10 tab-content">
+                <div class="container-fluid tab-pane fade active in">
+                    <div class="jumbotron">
+                        <h2>欢迎来到粤嵌管理平台</h2>
+                    </div>
+                        <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped active" style="width:90%;">
+                                正在加载数据...
+                            </div>
+                        </div>
+                </div>
+                <div class="container tab-pane fade" id="userlist">
+                    <!-- in active默认显示 -->
+                    <div class="alert alert-primary" style="margin-left: -15px">
+                        <ol class="breadcrumb">
+                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Library</a></li>
+                            <li class="active">Data</li>
+                        </ol>
+                    </div>
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <h4>用户列表<span class="small">在这里您将可以查看所有用户信息</span></h4>
+                        </div>
+                        <div class="panel-body">
+                            <form class="form-inline">
+                                <div class="form-group">
+                                        <div class="col-sm-4">                               
+                                            <select class="form-control">
+                                                <option value="">登录名</option>
+                                                <option value="">用户编号</option>
+                                                <option value="">用户年龄</option>
+                                                <option value="">性别</option>
+                                            </select>
+                                        </div> 
+                                        <div class="col-sm-8">
+                                            <div class="input-group">
+                                            <input type="text" class="form-control" />
+                                            <span class="input-group-addon btn-success"> 搜索</span>
+                                            </div>
+                                        </div>
+                                </div>
+                            </form>
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>用户编号</th>
+                                        <th>用户登录名</th>
+                                        <th>用户密码</th>
+                                        <th>年龄</th>
+                                        <th>性别</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>详细信息</td>
+                                        <td>详细信息</td>
+                                        <td>详细信息</td>
+                                        <td>详细信息</td>
+                                        <td>详细信息</td>
+                                    </tr>
+                                    <tr>
+                                        <td>资料提取</td>
+                                        <td>资料提取</td>
+                                        <td>资料提取</td>
+                                        <td>资料提取</td>
+                                        <td>资料提取</td>
+                                    </tr>
+                                    <tr>
+                                        <td>咨询次数</td>
+                                        <td>咨询次数</td>
+                                        <td>咨询次数</td>
+                                        <td>咨询次数</td>
+                                        <td>咨询次数</td>
+                                    </tr>
+                                    <tr>
+                                        <td>数据库相关</td>
+                                        <td>数据库相关</td>
+                                        <td>数据库相关</td>
+                                        <td>数据库相关</td>
+                                        <td>数据库相关</td>
+                                    </tr>
+                                    <tr>
+                                        <td>信息采集</td>
+                                        <td>信息采集</td>
+                                        <td>信息采集</td>
+                                        <td>信息采集</td>
+                                        <td>信息采集</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- end panel-body -->
+                        <div class="panel-footer">
+                            <nav>
+                                <ul class="pagination">
+                                    <li class="liClass">
+                                    <a href="#">
+                                        <span>上一页</span>
+                                    </a>
+                                    </li>                                  
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">6</a></li>
+                                    <li><a href="#">7</a></li>
+                                    <li><a href="#">8</a></li>
+                                    <li class="liClass">
+                                    <a href="#">
+                                        <span>下一页</span>
+                                    </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <!-- end panel-footer -->
+                    </div>
+                    <!--  end panel -->
+                </div>
+                <!-- end uselist -->
+                    <div class="container tab-pane" id="adduser">
+                        <div class="panel panel-warning">
+                            <div class="panel-heading">
+                                <h4>添加用户<span class="small">在此处添加新的用户</span></h4>
+                            </div>
+                            <div class="panel-body">
+                                <form class="form-horizontal">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">账号:</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" placeholder="请输入账号" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">密码:</label>
+                                        <div class="col-sm-7">
+                                            <input type="password" class="form-control" placeholder="请输入密码"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">权限码:</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" placeholder="请输入权限码">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-3">邮箱：</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" class="form-control" placeholder="请输入邮箱">
+                                        </div>
+                                        
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="panel-footer">
+                                <button class="btn btn-primary">确认添加</button>
+                                <button class="btn btn-primary">清空数据</button>
+                            </div>
+                        </div>
+                    </div><!--end adduser--> 
+            </div><!-- end tab-content -->    
+        </div>
+        <!-- end row -->
+    </div>
+    <!-- end containerBox -->
+</body>
+</html>
