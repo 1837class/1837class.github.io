@@ -61,6 +61,16 @@
 [validate插件验证表单](https://1837class.github.io/jquery/validate/validate-checkForm.html)&nbsp;&nbsp;https://1837class.github.io/jquery/validate/validate-checkForm.html
  <br/>
 
+# bootstrap + ajax
+[后台管理登录界面](https://1837class.github.io/bootstrap+ajax/systemmanage/login.html)&nbsp;&nbsp;https://1837class.github.io/bootstrap+ajax/systemmanage/login.html
+ <br/>
+[后台管理主界面](https://1837class.github.io/bootstrap+ajax/systemmanage/backstage2.html)&nbsp;&nbsp;https://1837class.github.io/bootstrap+ajax/systemmanage/backstage2.html
+ <br/>
+[城市天气接口获取信息](https://1837class.github.io/bootstrap+ajax/getWeather.html)&nbsp;&nbsp;https://1837class.github.io/bootstrap+ajax/getWeather.html
+ <br/>
+[淘宝接口搜索栏](https://1837class.github.io/bootstrap+ajax/taobaoSearch.html)&nbsp;&nbsp;https://1837class.github.io/bootstrap+ajax/taobaoSearch.html
+ <br/>
+
 
 
 
