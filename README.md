@@ -49,13 +49,14 @@
  <br/>
 
 # jQuery
-[轮播图](https://1837class.github.io/jquery/carousel/carousel.html)&nbsp;&nbsp;https://1837class.github.io/jquery/carousel/carousel.html
+[轮播图](https://1837class.github.io/jquery/carousel/carousel.html)
+&nbsp;&nbsp;https://1837class.github.io/jquery/carousel/carousel.html
  <br/>
 [三级联动](https://1837class.github.io/jquery/citys/city.html)&nbsp;&nbsp;https://1837class.github.io/jquery/citys/city.html
  <br/>
 [商品放大镜](https://1837class.github.io/jquery/glass/program/glass.html)&nbsp;&nbsp;https://1837class.github.io/jquery/glass/program/glass.html
  <br/>
-[商品放大镜](https://1837class.github.io/jquery/imgchange/imgChange.html)&nbsp;&nbsp;https://1837class.github.io/jquery/imgchange/imgChange.html
+[图片淡入淡出切换](https://1837class.github.io/jquery/imgchange/imgChange.html)&nbsp;&nbsp;https://1837class.github.io/jquery/imgchange/imgChange.html
  <br/>
 [validate插件验证表单](https://1837class.github.io/jquery/validate/validate-checkForm.html)&nbsp;&nbsp;https://1837class.github.io/jquery/validate/validate-checkForm.html
  <br/>
