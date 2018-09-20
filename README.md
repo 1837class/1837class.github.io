@@ -48,6 +48,18 @@
  [小球移动-原路返回效果](https://1837class.github.io/javaScript/5-ballmove.html)&nbsp;&nbsp;https://1837class.github.io/javaScript/5-ballmove.html
  <br/>
 
+# jQuery
+[轮播图](https://1837class.github.io/jquery/carousel/carousel.html)&nbsp;&nbsp;https://1837class.github.io/jquery/carousel/carousel.html
+ <br/>
+[三级联动](https://1837class.github.io/jquery/citys/city.html)&nbsp;&nbsp;https://1837class.github.io/jquery/citys/city.html
+ <br/>
+[商品放大镜](https://1837class.github.io/jquery/glass/program/glass.html)&nbsp;&nbsp;https://1837class.github.io/jquery/glass/program/glass.html
+ <br/>
+[商品放大镜](https://1837class.github.io/jquery/imgchange/imgChange.html)&nbsp;&nbsp;https://1837class.github.io/jquery/imgchange/imgChange.html
+ <br/>
+[validate插件验证表单](https://1837class.github.io/jquery/validate/validate-checkForm.html)&nbsp;&nbsp;https://1837class.github.io/jquery/validate/validate-checkForm.html
+ <br/>
+
 
 
 
