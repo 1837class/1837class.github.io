@@ -60,6 +60,8 @@
  <br/>
 [validate插件验证表单](https://1837class.github.io/jquery/validate/validate-checkForm.html)&nbsp;&nbsp;https://1837class.github.io/jquery/validate/validate-checkForm.html
  <br/>
+[jq+动画 模仿桌面弹出通知](https://1837class.github.io/jquery/deskInform/index.html)&nbsp;&nbsp;https://1837class.github.io/jquery/deskInform/index.html
+ <br/>
 
 # bootstrap + ajax
 [后台管理登录界面](https://1837class.github.io/bootstrap+ajax/systemmanage/login.html)&nbsp;&nbsp;https://1837class.github.io/bootstrap+ajax/systemmanage/login.html

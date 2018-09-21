@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>仿桌面通知</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<style>
+		.informButton button{
+			background: gray;
+			border: 0px;
+			border-radius: 5px; 
+			outline: none;
+			padding: 10px;
+			text-align: center;
+			cursor: pointer;
+			margin-top: 30px;
+			margin-left: 50px;
+		}
+		.informButton button:focus{
+			background: green;
+			border: 1px;
+		}
+		.informStage{
+			width: 30%;
+			height: 90%;
+			position: absolute;
+			bottom: 0px;
+			right: 0px;
+			overflow: hidden;
+		}
+		.informStage div{
+			width: 90%;
+			height: 20%;
+			position: absolute;
+			background: gray;
+			transition: all 0.4s cubic-bezier(0.42, 0.3, 0.5, 1.21);
+			transform: translateX(110%);
+			margin-bottom:10px;
+			margin-left: 10px;
+		}
+		.informStage div.active{
+			transform: translateX(0%);
+		}
+		
+
+	</style>
+</head>
+<body>
+	<div class="informButton">
+		<button type="text">仿桌面通知无图片</button>	
+		<button type="text">仿桌面通知无图片2</button>
+	</div>
+	<div class="informStage">
+	</div>
+	
+	<script type="text/javascript">
+		var activeId;
+		var clearId;
+		var divLength
+		var num0,num1,num2,num3;
+		
+		$('.informButton button').click(function(){
+			divLength = $('.informStage div').length;
+			if(divLength >= 4){
+				$('.informStage').empty();
+				divLength = 0;
+				display(divLength);
+				displayNone(divLength);
+			}else{
+				display(divLength);
+				displayNone(divLength);
+			}
+		})
+
+		function display(divLength){   
+			num0 = $('.informStage div').eq(0).attr('data-index');
+			num1 = $('.informStage div').eq(1).attr('data-index');
+			num2 = $('.informStage div').eq(2).attr('data-index');
+			num3 = $('.informStage div').eq(3).attr('data-index');
+			if(num0 != 0){
+				choiceIndex(0);
+			}else if(num1 != 1){
+				choiceIndex(1);
+			}else if(num2 !=2){
+				choiceIndex(2);
+			}else if(num3 !=3){
+				choiceIndex(3);
+			}else{
+				$('<div data-index=""><p>消息1</p></div>').appendTo('.informStage').attr('data-index',divLength).css({
+					bottom : (divLength*140) + 'px',
+					left : 0 
+				})
+				setTimeout(function(){
+					$('.informStage div').eq(divLength).addClass('active')
+				},100)
+			}
+		}
+		function displayNone(divLength){  //消息框缩回去
+			if(num0 != 0){
+				$('.informStage div').eq(0).delay(5000).fadeOut(300,function(){
+					$(this).remove();
+				});
+			}else{
+				$('.informStage div').eq(divLength).delay(5000).fadeOut(300,function(){
+					$(this).remove();
+				});
+			}
+		}
+		function choiceIndex(num){   //决定新弹出来的消息的位置
+				if(num == 0){
+					$('<div data-index=""><p>消息1</p></div>').prependTo('.informStage').attr('data-index',0).css({
+					bottom : 0,
+					left : 0 
+					})
+					setTimeout(function(){
+					$('.informStage div').eq(0).addClass('active')
+					},100)
+				}else{
+					$('<div data-index=""><p>消息1</p></div>').appendTo('.informStage').attr('data-index',num).css({
+						bottom : (num*140) + 'px',
+						left : 0 
+					})
+					setTimeout(function(){
+					$('.informStage div:last').addClass('active')
+					},100)	
+				}	
+		}
+		
+	</script>
+</body>
+</html>
