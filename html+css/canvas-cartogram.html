@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>原生对象的方法-Canvas制作饼状分布图</title>
+	<style>
+		#canvas{
+			margin-left: 350px;
+			background: #2C343C;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas" width="600" height="600" style="border: 1px solid green;"></canvas>
+	<script type="text/javascript">
+		var canvas = document.getElementById('canvas');
+		var c = canvas.getContext('2d');
+		var distance;
+		var cos;
+		CanvasRenderingContext2D.prototype.fillshape = function (shapeObj){
+			this.lineWidth=4;//设置线宽
+			this.lineJoin = 'round';
+		    this.beginPath();
+	        this.fillStyle=shapeObj.color;
+			//以下两句就画出来一个扇形
+			this.moveTo(shapeObj.x,shapeObj.y);
+        	this.arc(shapeObj.x,shapeObj.y,shapeObj.r,shapeObj.beginRadius,shapeObj.endRadius,shapeObj.order);
+			this.fill()
+			return this;
+		}
+
+		function line(x1,y1,endx1,endy1,endLinex,endLiney){
+			c.lineWidth=1;//设置线宽
+			c.strokeStyle = "gray";
+			c.beginPath();
+			c.moveTo(x1,y1);
+			c.lineTo(endx1,endy1);
+			c.lineTo(endLinex,endLiney);
+			c.stroke();
+		}
+
+		var assetText = function (x,y,word){
+			this.x =x;
+			this.y =y;
+			this.word =  word;
+			c.beginPath();
+			c.fillStyle = 'rgba(255,255,255,0.3)';
+			c.font = '14px Arial';
+			c.fillText(this.word,this.x,this.y);
+		}
+		var shape1 = {
+			x : 300,
+			y : 300,
+			r : 80,
+			beginRadius: Math.PI,
+			endRadius:Math.PI*8/6,
+			order:false,
+			color:'#611B19'
+		}
+		var shape2 = {
+			x : 300,
+			y : 300,
+			r : 100,
+			beginRadius: Math.PI*8/6,
+			endRadius:Math.PI*10/6,
+			order:false,
+			color:'#852421'
+		}
+		var shape3 = {
+			x : 300,
+			y : 300,
+			r : 120,
+			beginRadius: Math.PI*10/6,
+			endRadius:Math.PI*12.5/6,
+			order:false,
+			color:'#A62D29'
+		}
+		var shape4 = {
+			x : 300,
+			y : 300,
+			r : 140,
+			beginRadius: Math.PI*12.5/6,
+			endRadius:Math.PI*15/6,
+			order:false,
+			color:'#B4312D'		
+		}
+		var shape5 = {
+			x : 300,
+			y : 300,
+			r : 160,
+			beginRadius: Math.PI*15/6,
+			endRadius:Math.PI*18/6,
+			order:false,
+			color:'#D76662'
+		}
+		c.fillshape(shape1);
+		c.fillshape(shape2);
+		c.fillshape(shape3);
+		c.fillshape(shape4);
+		c.fillshape(shape5);
+			         
+		line(250,150,280,150,300,200);
+		line(390,220,440,220,470,250);
+		line(170,220,200,230,230,250);
+		line(80,350,130,350,150,370)
+		line(400,400,430,400,480,380);
+
+		var text1 = new assetText(140,210,'视频广告');
+		var text2 = new assetText(40,340,'搜索引擎');
+		var text3 = new assetText(490,380,'联盟广告');
+		var text4 = new assetText(210,140,'直接访问');
+		var text5 = new assetText(470,270,'邮件营销');
+
+		//以下方法不行，角度判断搞不定
+		canvas.onmousemove = function(event){
+			var mouseX = event.offsetX;
+			var mouseY = event.offsetY;
+			var calX = Math.abs(mouseX - 300);   //取绝对值
+			var calY = Math.abs(mouseY - 300);  
+			// console.log('X===>' + calX) 
+			// console.log('Y===>' + calY) 
+			var angleResult = angle(calX,calY);
+			distance = Math.pow((calX *calX + calY * calY), 0.5)  //开平方得到直线距离
+			// console.log(distance)
+			// console.log(angleResult);
+			// console.log(2*Math.PI/(Math.PI*8/6))
+			// console.log(Math.PI*8/6)
+			if(distance < 80 && angleResult > Math.PI && angleResult <= 76){  
+				console.log('111');
+			}	
+		}
+
+		function angle(x,y){
+	    cos = x/distance;
+	    radian = Math.acos(cos);
+ 		//radian 0-1
+ 		// console.log(radian*Math.PI)  //0-3
+ 		// console.log(180/(Math.PI/radian))
+	    return 180/(Math.PI/radian);
+	    // return radian/Math.PI;
+	}
+        
+
+
+
+	</script>
+</body>
+</html>

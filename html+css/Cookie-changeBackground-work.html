@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="en" manifest="demo.appcache">
+<head>
+	<meta charset="UTF-8">
+	<title>网页背景切换-cookie记录（需要服务器打开）</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no"/>
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0; 
+		}
+		body,html,.stage{
+			width: 100%;
+			height: 100%;
+		}
+		.stage{
+			position: relative;
+			background: lightblue;
+			background-size: cover;
+			background-position: center top;
+		}
+		.img-1,.img-2,.img-3{
+			width: 370px;
+			height: 200px;
+			background: pink;
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			right: 0;
+			top:0;
+			margin: auto;
+			transition: transform 1s;
+			background-size: cover;
+			background-position: center top;
+			border: 1px solid green;
+		}
+		.img-1{
+			background-image: url('img/4.jpg');
+			margin-left: 100px;
+		}
+		.img-2{
+			background-image: url('img/5.jpg');
+		}
+		.img-3{
+			background-image: url('img/3.jpg');
+			margin-right: 100px;
+		}
+		.stage div[class^="img"].active{
+			animation: float 2s infinite;
+		}
+		@keyframes float {
+			0%{transform:translateY(-7px);}
+			30%{transform:translateY(-9px);}
+			60%{transform:translateY(-7px);}
+			90%{transform:translateY(-9px);}
+			100%{transform:translateY(-7px);}
+		}
+		@media screen and (max-width:1320px){
+			.img-1,.img-2,.img-3{
+				width: 200px;	
+			}
+		}
+	</style>
+</head>
+<body>
+	<div class="stage">
+		<div class="img-1"></div>
+		<div class="img-2"></div>
+		<div class="img-3"></div>
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		function setCookie(cname, cvalue, exdays) {   /*记住函数，通用的写法*/
+            var d = new Date();
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+            var expires = "expires=" + d.toGMTString();
+            document.cookie = cname + "=" + cvalue + "; " + expires;
+        }
+
+        function getCookie(cname) {  /*记住函数，通用的写法*/
+            var name = cname + "=";
+            var cArray = document.cookie.split(';');
+            for (var i = 0; i < cArray.length; i++) {
+                var c = cArray[i].trim(); /*去掉空格*/
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length)
+                };
+            }
+            return "";
+        }
+
+		if(getCookie('imgCookie') != ''){
+			var returnCookie = getCookie('imgCookie');
+			var thisImg = $('.stage').find('div[class^="img"]').eq(returnCookie)
+			var indexImg = thisImg.css('backgroundImage');
+			$('.stage').stop().fadeOut(0).fadeIn('fast').css({
+				backgroundImage : indexImg
+			})
+			thisImg.addClass('active').siblings().removeClass('active');	
+		}
+		$('.stage').find('div[class^="img"]').click(function(){
+			var bacImg = $(this).css('backgroundImage')
+			var imgCookie = $(this).index();
+			$('.stage').stop().fadeOut(0).fadeIn('fast').css({
+				backgroundImage : bacImg
+			})
+			$(this).addClass('active').siblings().removeClass('active');
+			setCookie('imgCookie',imgCookie,1);
+		})  
+})
+   
+	</script>
+</body>
+</html>

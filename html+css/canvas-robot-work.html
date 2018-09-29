@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas制作安卓机器人图标</title>
+</head>
+	<style>
+		#canvas{
+			margin-left: 450px;
+		}
+	</style>
+<body>
+	<canvas id="canvas" width="400" height="400" style="border: 1px solid green;"></canvas>
+</body>
+<script type="text/javascript">
+	var canvas = document.getElementById('canvas');
+	var ctx = canvas.getContext('2d');
+
+	var fillLine = function(x,y,endx,endy,lineWidth,lineCap){
+		ctx.beginPath();
+		this.x = x;
+		this.y = y;	
+		this.endx = endx;	
+		this.endy = endy;	
+		this.lineWidth = lineWidth;
+		this.lineCap = lineCap;
+		ctx.lineCap=this.lineCap;
+		ctx.strokeStyle = '#6AC335';
+		ctx.lineWidth = this.lineWidth;
+		ctx.moveTo(this.x,this.y);
+		ctx.lineTo(this.endx,this.endy);
+		ctx.stroke();
+	}
+
+	var circle = function(x,y,r,beginRadius,endRadius,order,color){
+		ctx.beginPath();
+		this.x = x;
+		this.y = y;
+		this.r = r;
+		this.beginRadius = beginRadius;
+		this.endRadius = endRadius;
+		this.order = order;
+		this.color = color;
+		ctx.fillStyle = this.color;
+		ctx.lineWidth= 1;
+    	ctx.arc(this.x,this.y,this.r,this.beginRadius,this.endRadius,this.order);
+    	ctx.stroke();
+    	ctx.fill();
+	}
+
+	var handleft = new fillLine(100,150,100,230,25,'round');
+	var handright = new fillLine(280,150,280,230,25,'round');
+	var tipleft = new fillLine(145,50,155,80,5,'round');
+	var tipleft = new fillLine(235,50,225,80,5,'round');
+	var body = new fillLine(120,200,260,200,120,'butt')
+	var footleft = new fillLine(160,260,160,320,30,'round');
+	var footleft = new fillLine(220,260,220,320,30,'round');
+	var head = new circle(190,135,70,0,Math.PI,true,'#6AC335');
+	var eyeleft = new circle(160,100,7,0,2*Math.PI,true,'white');
+	var eyeright = new circle(220,100,7,0,2*Math.PI,true,'white');
+	var coverbody = new fillLine(135,256,245,256,30,'round');
+	
+</script>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>拖放并实现localStorage记录顺序</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		.dragBox{
+			width: 300px;
+			height: 265px;
+			margin-left: 50px;
+			border: 1px;
+		}
+		.dragBox ul li{
+			list-style: none;
+			padding: 15px;
+			margin-bottom: 5px;
+			background: lightblue;
+			border: 1px solid black;
+			text-align: center;
+		}
+		.dragBox button{
+			padding: 5px 20px;
+		}
+	</style>
+</head>
+<body>
+	<div class="dragBox">
+		<ul id="list">
+			<li>拖放顺序1</li>
+			<li>拖放顺序2</li>
+			<li>拖放顺序3</li>
+			<li>拖放顺序4</li>
+			<li>拖放顺序5</li>
+			
+		</ul>
+		<button>提交</button>
+	</div>
+	<script type="text/javascript">
+	$(function(){
+		var lis = document.getElementById('list').children;
+		var ul = document.getElementById('list');
+		var dragId ;
+
+		if (localStorage.sites) {  
+            var getItem =JSON.parse(localStorage.getItem('sites'));  
+            //记住，localStorage中存放的是字符串，所以取出来的时候记得转换为json对象，以便读取
+            for(var i=0 ; i<getItem.length; i++){
+            	$(lis[i]).text(getItem[i]);
+            }
+        }
+
+		$('.dragBox ul li').attr('draggable',true);
+
+		for(var i=0 ; i<lis.length; i++){
+			lis[i].addEventListener('dragstart',function(event){
+				// event.dataTransfer.setData("Text",event.target.id);
+				dragId = this;
+			},false);
+
+			lis[i].addEventListener('drop',function(event){
+				event.preventDefault();
+				// var data=event.dataTransfer.getData("Text");
+				ul.insertBefore(dragId,event.target);
+				  
+			},false);
+
+			lis[i].addEventListener('dragover',function(event){
+				event.preventDefault(); 
+			},false);
+		}
+		
+		$('button').click(function(){
+			saveLocalStorage();
+		})
+
+		function saveLocalStorage(){
+			// console.log('1111')
+        	localStorage.sites = JSON.stringify([]);  //因为是要覆盖的，所以一开始就置空
+        	// var data = '';
+        	for(var i=0 ; i<lis.length; i++){
+        		data = $(lis[i]).text();
+        		var tmp = JSON.parse(localStorage.getItem('sites'));
+        		tmp.push(data);
+        		localStorage.setItem('sites', JSON.stringify(tmp));
+        	}   	
+		}
+
+})
+
+	</script>
+</body>
+</html>
