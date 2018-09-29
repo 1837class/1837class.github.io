@@ -27,6 +27,16 @@
  <br/>
  [3D球体交互旋转效果](https://1837class.github.io/html+css/transfromWork7-3DRotate.html)&nbsp;&nbsp;https://1837class.github.io/html+css/transfromWork7-3DRotate.html
  <br/>
+ [canvas-饼状分布图](https://1837class.github.io/html+css/canvas-cartogram.html)&nbsp;&nbsp;https://1837class.github.io/html+css/canvas-cartogram.html
+ <br/>
+ [canvas-安卓机器人](https://1837class.github.io/html+css/canvas-robot-work.html)&nbsp;&nbsp;https://1837class.github.io/html+css/canvas-robot-work.html
+ <br/>
+ [Cookie-改变背景图并保存到Cookie，下次访问可以读取设置的背景](https://1837class.github.io/html+css/Cookie-changeBackground-work.html)&nbsp;&nbsp;https://1837class.github.io/html+css/Cookie-changeBackground-work.html
+ <br/>
+ [原生js+H5新特性-拖放并保存顺序到localStorage中，下次可以读取顺序](https://1837class.github.io/html+css/js-draggable-work.html)&nbsp;&nbsp;https://1837class.github.io/html+css/js-draggable-work.html
+ <br/>
+
+ <br/>
  <br/>
 
 # 2.javaScript
