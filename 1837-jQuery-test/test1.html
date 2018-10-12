@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <title>高亮显示</title>
+    <style>
+        .tableBox {
+            width: 50%;
+            /* background: pink; */
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .tableBox table {
+            margin-left: 15%;
+        }
+
+        .tableBox table tr:first-of-type {
+            background: #BDC3C7;
+        }
+
+        #Ttitle {
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="tableBox">
+        <table border="2" rules='all' cellpadding='30'>
+            <caption id="Ttitle">员工信息</caption>
+            <tr class="top">
+                <th style="opacity: 0">无无无无</th>
+                <th>姓名</th>
+                <th>薪水</th>
+                <th>年龄</th>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>张三</td>
+                <td>20000</td>
+                <td>23</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>李四</td>
+                <td>25000</td>
+                <td>19</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>王五</td>
+                <td>18000</td>
+                <td>27</td>
+            </tr>
+            <tr>
+                <td><input type="checkbox"></td>
+                <td>马六</td>
+                <td>24100</td>
+                <td>34</td>
+            </tr>
+        </table>
+    </div>
+</body>
+
+<script>
+    var backColor;
+    var tr;
+    var trIndex;
+    var trArr = [];  //保存复选框所在行的颜色的数组
+    $('.tableBox table tr:odd()').css('background', '#A3E4D7');
+    $('.tableBox table tr:even()').not('.top').css('background', '#D7BDE2');
+    $('.tableBox table tr td').find('input').change(function () {
+        tr = $(this).parents('tr');
+        trIndex = tr.index() - 1;
+        if ($(this).prop('checked') == true) {
+            backColor = tr.css('background');
+            trArr[trIndex] = backColor;
+            tr.css('background', 'yellow');
+        } else {
+            backColor = trArr[trIndex];
+            tr.css('background', backColor);
+        }
+    })
+</script>
+
+</html>

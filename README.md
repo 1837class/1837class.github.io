@@ -1,3 +1,14 @@
+# JQuery考试
+
+ [选中高亮显示](https://1837class.github.io/1837-jQuery-test/test1.html)&nbsp;&nbsp;https://1837class.github.io/1837-jQuery-test/test1.html
+ <br/>
+ [放大镜效果-插件版](https://1837class.github.io/1837-jQuery-test/test2.html)&nbsp;&nbsp;https://1837class.github.io/1837-jQuery-test/test2.html
+ <br/>
+ [轮播图](https://1837class.github.io/1837-jQuery-test/test3.html)&nbsp;&nbsp;https://1837class.github.io/1837-jQuery-test/test3.html
+ <br/> 
+ <br/>
+
+
 # 1.Html+Css
 
  [侧边栏小练习](https://1837class.github.io/html+css/sidenav.html)&nbsp;&nbsp;https://1837class.github.io/html+css/sidenav.html

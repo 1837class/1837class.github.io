@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜(.big类只设置absolute的话会有bug，因此加上left属性)</title>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#outBox{
+				overflow: hidden;  /*清除浮动，不影响后面的元素*/
+				width: 1154px;
+				margin: 20px auto;
+			}
+			.small{
+				width: 350px;
+				height: 449px;
+				border: 1px solid #000000;
+				float: left;
+				position: relative;
+			}
+			.indiv{ /* 透明滑块 */
+				width: 100px;
+				height: 100px;
+				background-color: rgba(0,0,0,0.3);
+				position: absolute;
+				top: 0;
+				left: 0;
+				display: none;
+				cursor: move;  /*改变鼠标的样式*/
+			}
+			.big{
+				width: 500px;
+				height: 600px;
+				border: 1px solid #000000;
+				float: left;	
+				display: none;
+				left: 33.5%;
+				position: absolute; 
+				/* 或者fixed，就能不占位置不影响后面的元素，而且子元素也能根据这个父元素来定位 */
+				overflow: hidden;  /* 超出隐藏 */
+			}
+			.big img{
+				position: absolute;
+			}
+		</style>
+</head>
+
+<body>
+	<div id="outBox">
+			<div class="small">
+				<img src="img/small.jpg"/>
+				<div class="indiv"></div>
+			</div>
+			<div class="big">
+				<img src="img/big.jpg" width="1500"/>
+			</div>
+	</div>
+
+</body>
+<script type="text/javascript">
+		$.fn.extend({
+			biggerGlass:function(){
+				//滑块能移动的最大范围
+				var maxLeft =  this.width() - this.children('.indiv').width()
+				var maxTop = this.height() - this.children('.indiv').height()
+				//定义一系列事件
+				this.on('mouseover',function() {
+					$('.indiv').add('.big').css('display','block')
+				}).on('mousemove',function(e){
+					//计算滑块的位置
+					var divLeft = e.pageX - $(this).offset().left - $(".indiv").width()/2
+					var divTop  = e.pageY - $(this).offset().top - $(".indiv").height()/2
+					//限制左右界
+					divLeft = divLeft<=0 ? 0:divLeft
+					divLeft = divLeft>=maxLeft ? maxLeft:divLeft
+					//限制上下界
+					divTop = divTop <=0 ? 0:divTop
+					divTop = divTop >=maxTop ? maxTop:divTop
+					$('.indiv').css({    //设置滑块跟着鼠标移动
+						left: divLeft + 'px',
+						top: divTop + 'px'
+					})
+					$('.big img').css({   //紧接着调整放大图片的位置即可
+						left: -1*(divLeft / maxLeft)* 1000 + "px",
+						top : -1*(divTop / maxTop)* 1300 + "px"
+					})
+				}).on('mouseout',function(){
+					$('.indiv').add('.big').css('display','none')
+				})
+			}
+	})
+			
+		
+
+	$(function(){
+		$('.small').biggerGlass();  //调用插件（里的方法）
+	})
+</script>
+</html>
