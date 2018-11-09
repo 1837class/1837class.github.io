@@ -98,7 +98,7 @@
  <br/>
 
 # 5.Vue.js(结合axios)
-[仿京东手机端](https://1837class.github.io/Vue/jdProduct-list.html)&nbsp;&nbsp;https://1837class.github.io/Vue/jdProduct-list.html
+[仿京东手机端](https://1837class.github.io/Vue/jd-PhoneShow/jdProduct-list.html)&nbsp;&nbsp;https://1837class.github.io/Vue/jd-PhoneShow/jdProduct-list.html
  <br/>
 
 
